@@ -1,4 +1,4 @@
-import { heroImage6 } from '../../../../core/constants/assets_images';
+import { heroImage } from '../../../../core/constants/assets_images';
 import { useHeroSectionAnimation } from '../hooks/useHeroSectionAnimation';
 import '../styles/heroSection.scss';
 
@@ -15,7 +15,7 @@ const HeroSection = () => {
         </p>
       </div>
 
-      <img ref={imageRef} src={heroImage6} alt="Maniac" className="hero_image" />
+      <img ref={imageRef} src={heroImage} alt="Maniac" className="hero_image" />
 
       <div
         ref={trailRef}
