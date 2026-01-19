@@ -18,6 +18,8 @@ const Projects = () => {
                         onLoad={onLoad}
                         style={{
                             width: 'fit-content',
+                            transform: 'scale(0.95)',
+                            transformOrigin: 'top center',
                         }}
                     />
                 </div>
