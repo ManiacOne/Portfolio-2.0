@@ -2,43 +2,98 @@
   position: relative;
   background-color: black;
   padding: 0 2rem;
-  height: 100dvh;
+  min-height: 100dvh;
+  width: 100%;
   z-index: 30;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.projects_title {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 10vw;
-  color: #dedddd;
-  font-family: 'aurochs';
-  line-height: 1;
-}
+// .projects_title {
+//   display: flex;
+//   justify-content: flex-end;
+// }
 
 .mobile_project {
   width: 100%;
   display: flex;
-  padding: 0 6rem;
+  gap: 2rem;
+  align-items: stretch;
 
   .project_description_container {
     display: flex;
+    flex: 1;
     flex-direction: column;
-    gap: 1rem;
-    padding: 6rem 3rem;
+    gap: 1.5rem;
     opacity: 0;
+    align-items: flex-start;
+    margin-top: 2.5rem;
 
     .project_title {
-      font-size: 3.5rem;
-      color: #dedddd;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      color: #a3d244;
+      margin-bottom: 0.5rem;
       font-family: 'Aurochs';
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #0008;
     }
 
     .project_description {
-      font-size: 32px;
-      font-weight: 500;
+      font-size: 1.25rem;
+      font-weight: 400;
       color: #dedddd;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
     }
+
+    .store_links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .store_btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: #222;
+      color: #fff;
+      box-shadow: 0 2px 8px #0006;
+      transition:
+        background 0.2s,
+        transform 0.2s;
+      border: 2px solid transparent;
+    }
+    .store_btn.appstore {
+      border-color: #a3d244;
+    }
+    .store_btn.playstore {
+      border-color: #7cb335;
+    }
+    .store_btn:hover {
+      background: #a3d244;
+      color: #232526;
+      transform: translateY(-2px) scale(1.04);
+    }
+    .store_icon {
+      width: 1.7rem;
+      height: 1.7rem;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 2px #0008);
+    }
+  }
+
+  .spline_container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    max-width: 50%;
   }
 }
