@@ -8,30 +8,12 @@ export const useHeroSectionAnimation = () => {
   const dashboardConainerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const trailRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const lastPos = useRef({ x: 0, y: 0 });
   const listenersAttached = useRef(false);
   const resetTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useGSAP(() => {
-
-    if (trailRef.current) {
-      const lines = trailRef.current.querySelectorAll('.trail_line');
-      lines.forEach((line) => {
-        gsap.to(line, {
-          yPercent: -100,
-          repeat: -1,
-          duration: 8,
-          ease: 'none',
-          modifiers: {
-            yPercent: gsap.utils.wrap(-100, 0)
-          }
-        });
-      });
-    }
-
-    // Timeline for elegant, staggered entrance
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
     const reset = () => {
       gsap.to(imageRef.current, {
         x: 0,
@@ -60,27 +42,58 @@ export const useHeroSectionAnimation = () => {
       resetTimeout.current = setTimeout(reset, 120);
     };
 
-    tl.fromTo(
-      imageRef.current,
-      {
-        scale: 1.1,
-        opacity: 0,
-        filter: 'blur(16px)',
-      },
-      {
-        scale: 1,
-        filter: 'blur(0px)',
-        opacity: 1,
-        duration: 1.8,
-        onComplete: () => {
-          if (!listenersAttached.current && dashboardConainerRef.current) {
-            dashboardConainerRef.current.addEventListener('mousemove', handleMouseMove);
-            dashboardConainerRef.current.addEventListener('mouseleave', reset);
-            listenersAttached.current = true;
-          }
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.set(trailRef.current, { opacity: 0, filter: 'blur(8px)' })
+      .set(headerRef.current, { opacity: 0, y: '-20px' })
+      .fromTo(
+        imageRef.current,
+        {
+          scale: 1.1,
+          opacity: 0,
+          filter: 'blur(16px)',
         },
-      },
-    );
+        {
+          scale: 1,
+          filter: 'blur(0px)',
+          opacity: 1,
+          duration: 1.8,
+          onComplete: () => {
+            if (!listenersAttached.current && dashboardConainerRef.current) {
+              dashboardConainerRef.current.addEventListener('mousemove', handleMouseMove);
+              dashboardConainerRef.current.addEventListener('mouseleave', reset);
+              listenersAttached.current = true;
+            }
+            // Show trail after image animation
+            if (trailRef.current) {
+              gsap.to(trailRef.current, {
+                opacity: 1,
+                duration: 0.7,
+                ease: 'power2.out',
+                filter: 'blur(0px)',
+              });
+              // Start the trail animation
+              const lines = trailRef.current.querySelectorAll('.trail_line');
+              lines.forEach((line) => {
+                gsap.to(line, {
+                  yPercent: -100,
+                  repeat: -1,
+                  duration: 8,
+                  ease: 'none',
+                  modifiers: {
+                    yPercent: gsap.utils.wrap(-100, 0),
+                  },
+                });
+              });
+            }
+          },
+        },
+      )
+      .to(headerRef.current, {
+        opacity: 1,
+        duration: 1,
+        y: '0px',
+      });
 
     // Pin the hero section so projects scroll over it
     ScrollTrigger.create({
@@ -101,5 +114,5 @@ export const useHeroSectionAnimation = () => {
     };
   }, []);
 
-  return { dashboardConainerRef, imageRef, trailRef };
+  return { dashboardConainerRef, imageRef, trailRef, headerRef };
 };
