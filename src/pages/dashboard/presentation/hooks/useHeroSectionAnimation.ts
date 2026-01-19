@@ -102,6 +102,12 @@ export const useHeroSectionAnimation = () => {
       end: '+=100%',
       pin: true,
       pinSpacing: false,
+      onEnterBack: () => {
+        gsap.to(trailRef.current, { display: 'block' });
+      },
+      onLeave: () => {
+        gsap.to(trailRef.current, { display: 'none' });
+      },
     });
 
     return () => {
