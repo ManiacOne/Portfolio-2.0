@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^8.13.6",
     "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^1.10.39",
