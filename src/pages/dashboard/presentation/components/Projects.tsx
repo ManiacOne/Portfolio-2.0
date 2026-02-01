@@ -15,8 +15,8 @@ const Projects = () => {
 
   return (
     <div ref={projectRootRef} className="projects_root">
-      <PageTitle title="PROJECTS" ref={projectTitleRef} />
       <div className="mobile_project">
+        <PageTitle title="PROJECTS" ref={projectTitleRef} />
         <div ref={projectDescriptionRef} className="project_description_container">
           <h3 className="project_title">{currentProject.name}</h3>
           <p className="project_description">{currentProject.description}</p>
@@ -49,15 +49,12 @@ const Projects = () => {
             </a>
           </div>
         </div>
-        <div ref={phoneRef} className="spline_container">
+      </div>
+      <div ref={phoneRef} className="spline_container">
+        <div className="spline_inner">
           <Spline
             scene="https://prod.spline.design/KzjInY4RX7SH5Ja7/scene.splinecode"
             onLoad={onLoad}
-            style={{
-              width: 'fit-content',
-              transform: 'scale(0.95)',
-              transformOrigin: 'top center',
-            }}
           />
         </div>
       </div>
