@@ -11,6 +11,8 @@ import xxBunny from '../../assets/xx_bunny.svg';
 import kawsBunny from '../../assets/kaws_bunny.svg';
 import heroImage from '../../assets/hero_image_6.png';
 
+import myPlan8IphoneMock from '../../assets/projects_mock/myPlan8_mock 1.png';
+
 export {
     heroImage,
     logo,
@@ -23,5 +25,6 @@ export {
     iphoneMockUp,
     iphoneMockUp2,
     xxBunny,
-    kawsBunny
+    kawsBunny,
+    myPlan8IphoneMock
 }
