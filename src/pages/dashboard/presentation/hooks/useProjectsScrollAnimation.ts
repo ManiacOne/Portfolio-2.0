@@ -94,6 +94,10 @@ export const useProjectsScrollAnimation = () => {
     if (!obj) return;
     splineAppRef.current = obj;
     obj!.rotation.y = Math.PI;
+
+    const imageObj = splineApp.findObjectByName('Screen');
+    console.log('imageObj', imageObj);
+    console.log(Object.keys(imageObj!));
   }
 
   /**
